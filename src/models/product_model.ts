@@ -62,6 +62,23 @@ export class ProductStore {
       throw new Error(`Could not execute. Error: ${err}`)
     }
   }
+  async showByCategory(category_id:number): Promise<Product[] > {
+    try {
+      const sql = 'SELECT * FROM products WHERE category_id=($1)'
+
+      // @ts-ignore
+      const conn = await Client.connect();
+      const result = await conn
+        .query(sql,[category_id])
+
+      const products = result.rows;
+
+      conn.release()
+      return products
+    } catch (err) {
+      throw new Error(`Could not execute. Error: ${err}`)
+    }
+  }
  
 
 }

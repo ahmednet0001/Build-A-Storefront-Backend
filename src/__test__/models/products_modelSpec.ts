@@ -30,7 +30,7 @@ describe("product Model", () => {
             id:1,
             name: 'product1',
             price: 250,
-            category_id: 2
+            category_id: 1
 
         });
     });
@@ -56,6 +56,16 @@ describe("product Model", () => {
             category_id:1
 
         });
+    });
+    it('show by category id method should return the correct product', async () => {
+        const result = await store.showByCategory(1);
+        expect(result).toEqual([{
+            id:1,
+            name: 'product1',
+            price:250,
+            category_id:1
+
+        }]);
     });
 
 

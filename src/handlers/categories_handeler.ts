@@ -16,9 +16,9 @@ const create=async(req:Request ,res:Response)=>{
         res.json('Access denied, invalid token')
         return
     }
-    const p=await store.create(req.body);
+    const c=await store.create(req.body);
     res.send({
-        product:p
+        category:c
     })
 }
 
