@@ -5,13 +5,14 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon src/index.ts",
-    "build": "npx tsc",
+    "build": "rimraf ./dist && npx tsc",
     "start": "npm run build && node dist/index.js",
     "format": "eslint src/**/*.ts --fix && eslint src/*.ts --fix",
     "lint": "eslint src/**/*.ts && eslint src/*.ts",
-    "test-up": "db-migrate up --env test ",
-    "test-down": "db-migrate reset  --env test ",
-    "test": "npm run build && npm run test-up && cross-env ENV=test jasmine"
+    "test-db-up": "db-migrate up --env test ",
+    "test-db-down": "db-migrate reset  --env test ",
+    "`test-up`": " npm run test-db-up && cross-env ENV=test jasmine",
+    "test":"npm run build && node dist/test_db_reset.js"
   },
   "repository": {},
   "keywords": [],
@@ -33,6 +34,7 @@
     "jasmine-spec-reporter": "^7.0.0",
     "nodemon": "^2.0.20",
     "prettier": "^2.7.1",
+    "rimraf": "^3.0.2",
     "supertest": "^6.3.1",
     "ts-node": "^10.9.1",
     "typescript": "^4.8.4"
