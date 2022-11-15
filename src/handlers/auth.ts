@@ -1,19 +1,17 @@
 import dotenv from 'dotenv';
-import  { Request, Response, NextFunction} from 'express';
-import jwt, { Secret } from 'jsonwebtoken';
-
-
+import { Request, Response, NextFunction } from 'express';
+import jwt from 'jsonwebtoken';
 dotenv.config();
-
-export const auth = (req: Request, res: Response, next:NextFunction) => {
+export const auth = (req: Request, res: Response, next: NextFunction) => {
     try {
-        const authorizationHeader = req.headers.authorization as string;
-        const token = authorizationHeader.split(' ')[1];
-        const x=jwt.verify(token, process.env.BYCRYPT_PWD as Secret);
-        res.json(x)
-       // next()
+        const authHead: string | undefined = req.headers.authorization;
+        const token: string = authHead ? authHead.split(' ')[1] : '';
+        const decoded: string | object = jwt.verify(
+            token,
+            process.env.BYCRYPT_PWD as string
+        );
+        next();
     } catch (error) {
-        res.status(401)
+        res.status(401).json({"message" :"Unauthorized"})
     }
-    
 }

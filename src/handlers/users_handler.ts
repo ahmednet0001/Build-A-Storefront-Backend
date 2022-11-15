@@ -1,8 +1,8 @@
 import express, { Request, Response } from 'express';
-import { Category, CategoryStore } from '../models/category_model';
+import { UserStore } from '../models/user_model';
 import { auth } from './auth';
 
-const store = new CategoryStore();
+const store = new UserStore();
 const create = async (req: Request, res: Response) => {
   const c = await store.create(req.body);
   res.json("HJ")
@@ -25,9 +25,9 @@ const all = async (req: Request, res: Response) => {
 
 
 const categories_routes = (app: express.Application) => {
-  app.post('/categories',auth, create);
-  app.get('/categories/:id', show);
-  app.get('/categories', all);
+  app.post('/users',auth, create);
+  app.get('/users/:id',auth, show);
+  app.get('/users',auth, all);
 };
 
 export default categories_routes;

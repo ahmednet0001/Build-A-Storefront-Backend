@@ -12,7 +12,7 @@
     "test-db-up": "db-migrate up --env test ",
     "test-db-down": "db-migrate reset  --env test ",
     "`test-up`": " npm run test-db-up && cross-env ENV=test jasmine",
-    "test":"npm run build && node dist/test_db_reset.js"
+    "test": "npm run build && node dist/test_db_reset.js"
   },
   "repository": {},
   "keywords": [],
@@ -20,6 +20,7 @@
   "license": "ISC",
   "devDependencies": {
     "@types/bcrypt": "^5.0.0",
+    "@types/cors": "^2.8.12",
     "@types/express": "^4.17.14",
     "@types/jasmine": "^4.3.0",
     "@types/pg": "^8.6.5",
@@ -42,6 +43,7 @@
   "dependencies": {
     "@types/jsonwebtoken": "^8.5.9",
     "bcrypt": "^5.1.0",
+    "cors": "^2.8.5",
     "db-migrate": "^0.11.13",
     "db-migrate-pg": "^1.2.2",
     "dotenv": "^16.0.3",
